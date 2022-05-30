@@ -1,0 +1,17 @@
+{
+  "name": "todo-ports-adapters",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "log-to-file": "^3.0.0",
+    "uuid": "^8.3.2"
+  }
+}
