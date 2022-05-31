@@ -103,6 +103,17 @@ export class Application {
   }
 
   logList() {
-    this.__logger.log(JSON.stringify(this.getAll()));
+    this.log(JSON.stringify(this.getAll()));
+  }
+
+  log(text) {
+    this.__logger.log(text);
+  }
+
+  logTable(items, columns) {
+    this.__logger.table(
+      items.map((item) => item.toJSON()),
+      columns
+    );
   }
 }

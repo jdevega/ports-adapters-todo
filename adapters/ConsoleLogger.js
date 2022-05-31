@@ -1,4 +1,9 @@
 /** @typedef {import('../ports/types/Logger').LoggerPortInterface} LoggerPortInterface*/
+/** @typedef {import('../domain/types/Todo').TodoObject} TodoObject*/
+
+import figureSet from "figures";
+import { Table } from "console-table-printer";
+import chalk from "chalk";
 
 /**
  * @class ConsoleLoggerAdapter
@@ -7,6 +12,13 @@
 export class ConsoleLoggerAdapter {
   constructor() {
     this.__logger = console;
+    this.__logger.table = (rows, columns) => {
+      const table = new Table({
+        columns: columns.map((name) => ({ name, alignment: "left" })),
+      });
+      table.addRows(rows);
+      table.printTable();
+    };
   }
 
   /**
@@ -15,5 +27,30 @@ export class ConsoleLoggerAdapter {
    */
   log(text) {
     this.__logger.log(text);
+  }
+
+  /**
+   *
+   * @param {Array<TodoObject>} items
+   * @param {Array<String>} columns
+   */
+  table(items, columns) {
+    const parsedItems = this.__parseItems(items, columns);
+    this.__logger.table(parsedItems, columns);
+  }
+
+  __parseItems(items, columns) {
+    const parsedItems = items.map((item) => {
+      Object.keys(item).forEach((key) => {
+        if (!columns.includes(key)) delete item[key];
+        if (typeof item[key] === "boolean") {
+          item[key] = item[key]
+            ? chalk.green(figureSet.tick)
+            : chalk.red(figureSet.cross);
+        }
+      });
+      return item;
+    });
+    return parsedItems;
   }
 }

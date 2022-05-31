@@ -9,6 +9,8 @@ export interface ApplicationInterface {
   getPending(): Array<Todo>;
   getAll(): Array<Todo>;
   logList(): void;
+  log(text: String): void;
+  logTable(items: Array<Todo>, columns?: Array<String>): void;
 }
 
 export type ApplicationAdapters = {

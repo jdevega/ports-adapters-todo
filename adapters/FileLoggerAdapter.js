@@ -22,4 +22,8 @@ export class FileLoggerAdapter {
   log(text) {
     this.__log(text, this.__path);
   }
+
+  table(items) {
+    this.__log(JSON.stringify(items));
+  }
 }
