@@ -2,22 +2,23 @@ import { build } from "esbuild";
 import htmlPlugin from "@chialab/esbuild-plugin-html";
 
 build({
-  entryPoints: ["framework/node/app.js"],
+  entryPoints: ["framework/node/app.js", "framework/server/index.js"],
   loader: { ".js, .d.ts": "ts" },
   bundle: true,
-  outfile: "dist/node/todoapp.cjs",
+  outdir: "dist/node",
   platform: "node",
   format: "cjs",
+  outExtension: { ".js": ".cjs" },
   minify: true,
   watch: {
     onRebuild(error, result) {
-      if (error) console.error("NODE app build failed:", error);
-      else console.log("NODE app build succeeded");
+      if (error) console.error("NODE apps build failed:", error);
+      else console.log("NODE apps build succeeded");
     },
   },
 })
   .then((result) => {
-    console.log("watching NODE app ...");
+    console.log("watching NODE apps ...");
   })
   .catch(() => process.exit(1));
 
