@@ -1,7 +1,7 @@
 /** @typedef {import('../ports/types/Logger').LoggerPortInterface} LoggerPortInterface*/
 /** @typedef {import('../domain/types/Todo').TodoObject} TodoObject*/
 
-import figureSet from "figures";
+import logSymbols from "log-symbols";
 import { Table } from "console-table-printer";
 import chalk from "chalk";
 
@@ -45,8 +45,8 @@ export class ConsoleLoggerAdapter {
         if (!columns.includes(key)) delete item[key];
         if (typeof item[key] === "boolean") {
           item[key] = item[key]
-            ? chalk.green(figureSet.tick)
-            : chalk.red(figureSet.cross);
+            ? chalk.green(logSymbols.success)
+            : chalk.red(logSymbols.error);
         }
       });
       return item;

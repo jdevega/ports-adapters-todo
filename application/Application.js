@@ -31,7 +31,6 @@ export class Application {
       // @ts-ignore
       const todoObject = this.__store.save(todo.toJSON());
       const newItem = Todo.fromJSON(todoObject);
-      this.__logger.log(`[ADDED]: ${JSON.stringify(newItem)}`);
       return newItem;
     } catch (error) {
       this.__logger.log(

@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "build": "node ./.scripts/build.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,7 +18,13 @@
     "figures": "^4.0.1",
     "inquirer": "^8.2.4",
     "inquirer-interrupted-prompt": "^1.0.2",
+    "lit": "^2.2.5",
+    "log-symbols": "^5.1.0",
     "log-to-file": "^3.0.0",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@chialab/esbuild-plugin-html": "^0.15.37",
+    "esbuild": "^0.14.42"
   }
 }

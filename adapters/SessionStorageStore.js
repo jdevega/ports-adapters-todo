@@ -1,6 +1,6 @@
 /** @typedef {import('../ports/types/Store').StorePortInterface} StorePortInterface */
 
-import { UUIDGeneratorAdapter } from "./uuidGenerator";
+import { UUIDGeneratorAdapter } from "./UUIDGenerator.js";
 
 /**
  * @class SessionStorageStoreAdapter
@@ -43,7 +43,7 @@ export class SessionStorageStoreAdapter {
   }
 
   list() {
-    return JSON.parse(this.__store.getItem(this.__sessionStorageKey));
+    return JSON.parse(this.__store.getItem(this.__sessionStorageKey)) || [];
   }
 
   delete(id) {

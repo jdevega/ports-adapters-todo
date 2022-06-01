@@ -3,29 +3,19 @@
 import { Command } from "commander";
 import inquirer from "inquirer";
 import InterruptedPrompt from "inquirer-interrupted-prompt";
-import { ConsoleLoggerAdapter } from "../../adapters/ConsoleLogger.js";
 import { MemoryStoreAdapter } from "../../adapters/MemoryStore.js";
-import { UUIDGeneratorAdapter } from "../../adapters/uuidGenerator.js";
+import { UUIDGeneratorAdapter } from "../../adapters/UUIDGenerator.js";
 import { Application } from "../../application/Application.js";
+import { ConsoleLoggerAdapter } from "../../adapters/ConsoleLogger.js";
+// import { FileLoggerAdapter } from "../../adapters/FileLoggerAdapter.js";
 
 InterruptedPrompt.replaceAllDefaults(inquirer);
 
 const application = new Application({
   logger: new ConsoleLoggerAdapter(),
+  // logger: new FileLoggerAdapter(),
   store: new MemoryStoreAdapter(new UUIDGeneratorAdapter()),
 });
-
-// const firstTodo = application.addTodo("Este es el primer todo");
-
-// application.logList();
-
-// const secondTodo = application.addTodo("Este es el segundo todo");
-
-// application.logList();
-
-// application.markTodoAsCompleted(firstTodo.id);
-
-// application.logList();
 
 const program = new Command();
 program
